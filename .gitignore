@@ -8,15 +8,15 @@ venv/
 i_venv/
 
 # SQLite database
-database/*.sqlite3
+# database/*.sqlite3
 
 # System files
-.DS_Store
-Thumbs.db
+# .DS_Store
+# Thumbs.db
 
 # Logs
 *.log
 
 # IDE files
-.vscode/
-.idea/
+# .vscode/
+# .idea/
