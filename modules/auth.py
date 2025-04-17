@@ -52,3 +52,14 @@ class AuthManager:
                 return User(*row)
             print("نام کاربری یا رمز اشتباهه.")
             return None
+
+    #def add_bio_column():
+        #with sqlite3.connect("database/db.sqlite3") as conn:
+            #cur = conn.cursor()
+            #cur.execute("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT ''")
+            #print("✅ bio اضافه شد.")
+
+    # موقت اجرا کن
+    #add_bio_column()
+
+
