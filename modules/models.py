@@ -1,9 +1,10 @@
 class User:
-    def __init__(self, id, username, email, password):
+    def __init__(self, id, username, email, password , bio=""):
         self.id = id
         self.username = username
         self.email = email
         self.password = password
+        self.bio = bio
 
 class Post:
     def __init__(self, id, user_id, caption, likes=0):

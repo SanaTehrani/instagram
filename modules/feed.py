@@ -239,6 +239,19 @@ class FeedManager:
             print("✅ پست با موفقیت ویرایش شد.")
 
 
+    def create_table(self):
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS posts (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    caption TEXT NOT NULL,
+                    likes INTEGER DEFAULT 0,
+                    created_at TEXT NOT NULL
+                )
+            """)
+
+
 
 
 

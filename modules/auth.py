@@ -45,21 +45,24 @@ class AuthManager:
 
         with sqlite3.connect(self.db_path) as conn:
             cur = conn.cursor()
-            cur.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+            cur.execute("SELECT id, username, email, password FROM users WHERE username=? AND password=?", (username, password))
             row = cur.fetchone()
             if row:
-                print(f"خوش اومدی {username}")
                 return User(*row)
+
             print("نام کاربری یا رمز اشتباهه.")
             return None
 
-    #def add_bio_column():
-        #with sqlite3.connect("database/db.sqlite3") as conn:
-            #cur = conn.cursor()
-            #cur.execute("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT ''")
-            #print("✅ bio اضافه شد.")
-
-    # موقت اجرا کن
-    #add_bio_column()
+    def add_bio_column():
+        with sqlite3.connect("database/db.sqlite3") as conn:
+            cur = conn.cursor()
+            cur.execute("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT ''")
+            print("بیو اضافه شد")
+    
+    def add_bio_column(self):
+        with sqlite3.connect(self.db_path) as conn:
+            cur = conn.cursor()
+            cur.execute("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT ''")
+            print("بیو اضافه شد")
 
 

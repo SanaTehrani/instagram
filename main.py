@@ -1,22 +1,17 @@
 from modules.auth import AuthManager
 from modules.feed import FeedManager
 from modules.explore import ExploreManager
-
-explore = ExploreManager()
-
 from modules.profile import ProfileManager
-...
-profile = ProfileManager()
-
 from modules.messaging import MessageManager
-...
-messaging = MessageManager()
-
 
 def main():
     auth = AuthManager()
+    explore = ExploreManager()
+    profile = ProfileManager()
+    messaging = MessageManager()
 
     while True:
+        print("\n👤 حساب کاربری")
         print("1. ورود")
         print("2. ثبت‌نام")
         print("3. خروج")
@@ -28,77 +23,88 @@ def main():
             if user:
                 feed = FeedManager()
                 while True:
-                    print("\nصفحه اصلی")
-                    print("1. دیدن پست‌ها")
-                    print("2. ساخت پست")
-                    print("3. خروج")
+                    print("\n🏠 صفحه اصلی")
+                    print("۱. پست‌ها")
+                    print("۲. جست‌وجو")
+                    print("۳. پروفایل")
+                    print("۴. پیام‌ها")
+                    print("۵. تنظیمات و خروج")
 
-                    choice2 = input("انتخاب: ")
-                    if choice2 == "1":
-                        feed.show_feed(user.id)
-                    elif choice2 == "2":
-                        feed.create_post(user.id)
-                    elif choice2 == "3":
-                        feed.add_comment(user.id)
-                    elif choice2 == "4":
+                    section = input("بخش مورد نظر: ")
+
+                    # --------------------- بخش ۱: پست‌ها ---------------------
+                    if section == "1":
+                        print("\n📝 مدیریت پست‌ها")
+                        print("1. دیدن پست‌ها")
+                        print("2. ساخت پست")
+                        print("3. ثبت کامنت")
+                        print("4. لایک پست")
+                        print("5. ذخیره پست")
+                        print("6. دیدن پست‌های ذخیره‌شده")
+                        print("7. دیدن پست‌های من")
+                        print("8. حذف پست")
+                        print("9. ویرایش پست")
+                        print("10. بازگشت")
+
+                        p = input("انتخاب: ")
+                        if p == "1": feed.show_feed(user.id)
+                        elif p == "2": feed.create_post(user.id)
+                        elif p == "3": feed.add_comment(user.id)
+                        elif p == "4": feed.like_post(user.id)
+                        elif p == "5": feed.save_post(user.id)
+                        elif p == "6": feed.view_saved_posts(user.id)
+                        elif p == "7": feed.view_user_posts(user.id)
+                        elif p == "8": feed.delete_post(user.id)
+                        elif p == "9": feed.edit_post(user.id)
+                        elif p == "10": continue
+                        else: print("❌ گزینه نامعتبر")
+
+                    # --------------------- بخش ۲: جست‌وجو ---------------------
+                    elif section == "2":
                         explore.search_user(user.id)
-                    elif choice2 == "5":
-                        feed.like_post(user.id)
-                    elif choice2 == "6":
-                        profile.view_profile(user.id)
-                    elif choice2 == "7":
-                        profile.edit_profile(user.id)
-                    elif choice2 == "8":
-                        messaging.send_message(user.id)
-                    elif choice2 == "9":
-                        messaging.view_inbox(user.id)
-                    elif choice2 == "10":
-                        feed.save_post(user.id)
-                    elif choice2 == "11":
-                        feed.view_saved_posts(user.id)
-                    elif choice2 == "12":
-                        feed.view_user_posts(user.id)
-                    elif choice2 == "13":
-                        feed.delete_post(user.id)
-                    elif choice2 == "15":
-                        feed.edit_post(user.id)
-                    elif choice2 == "16":
+
+                    # --------------------- بخش ۳: پروفایل ---------------------
+                    elif section == "3":
+                        print("\n👤 پروفایل شما")
+                        print("1. مشاهده پروفایل")
+                        print("2. ویرایش پروفایل")
+                        print("3. بازگشت")
+
+                        p = input("انتخاب: ")
+                        if p == "1": profile.view_profile(user.id)
+                        elif p == "2": profile.edit_profile(user.id)
+                        elif p == "3": continue
+                        else: print("❌ گزینه نامعتبر")
+
+                    # --------------------- بخش ۴: پیام‌ها ---------------------
+                    elif section == "4":
+                        print("\n📨 پیام‌ها")
+                        print("1. ارسال پیام")
+                        print("2. مشاهده صندوق ورودی")
+                        print("3. بازگشت")
+
+                        p = input("انتخاب: ")
+                        if p == "1": messaging.send_message(user.id)
+                        elif p == "2": messaging.view_inbox(user.id)
+                        elif p == "3": continue
+                        else: print("❌ گزینه نامعتبر")
+
+                    # --------------------- بخش ۵: خروج ---------------------
+                    elif section == "5":
+                        print("📤 خروج از حساب")
                         break
-
-
                     else:
-                        print("گزینه نامعتبر")
+                        print("❌ گزینه نامعتبر")
 
         elif choice == "2":
             auth.register()
+
         elif choice == "3":
-            print("خروج از برنامه")
+            print("👋 خروج از برنامه")
             break
         else:
-            print("گزینه نامعتبر")
-        
+            print("❌ گزینه نامعتبر")
 
-print("1. دیدن پست‌ها")
-print("2. ساخت پست")
-print("3. ثبت کامنت")
-print("4. جستجو و دنبال کردن")
-print("5. لایک پست")
-print("6. مشاهده پروفایل")
-print("7. ویرایش پروفایل")
-print("8. ارسال پیام")
-print("9. صندوق پیام‌ها")
-print("10. ذخیره پست")
-print("11. دیدن پست‌های ذخیره‌شده")
-print("12. دیدن پست‌های من")
-print("13. حذف پست")
-print("14. ویرایش پست")
-
-print("15. خروج")
-
-
-
-
-
-
+# اجرای اصلی
 if __name__ == "__main__":
     main()
